@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment Section</title>
+        <style>
+        /* General Body Styling */
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Container for the comment form and list */
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        /* Heading Styling */
+        h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 500px;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+
+        li:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        /* Style when no comments exist */
+        .no-comments {
+            color: #888;
+            text-align: center;
+        }
+
+
+        .comment-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+            textarea, button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Leave a Comment</h2>
+    <form method="post">
+        <textarea name="comment" rows="4" cols="50" placeholder="Write your comment here..." required></textarea><br>
+        <button type="submit">Post Comment</button>
+    </form>
+
+    <h3>Comments:</h3>
+    <div class="comment-list">
+    <ul>
+        {% for comment in comments|reverse %}
+            <li>{{ comment }}</li>
+        {% else %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
